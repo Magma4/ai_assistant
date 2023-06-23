@@ -1,0 +1,1 @@
+This is a fun python project i worked on during codeday ghana. It is an AI assistant that can send emails, reply to voice queries and others
