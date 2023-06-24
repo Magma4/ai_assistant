@@ -1,6 +1,7 @@
 import pyttsx3 #import pyttsx3 model
 import datetime as dt # Import date and time
 import speech_recognition as sr # Import speech recognition
+import wikipedia # import wikipedia
 
 engine = pyttsx3.init() #Created and initialised an object for the ai package
 
@@ -87,3 +88,9 @@ if __name__ == "__main__":
         elif "offline" in query:
             speak("Going off")
             quit()
+        elif "wikipedia" in query:
+            speak("Searching...")
+            query = query.replace("wikipedia", "")
+            result = wikipedia.summary(query, sentences = 3)
+            print(result)
+            speak(result)
