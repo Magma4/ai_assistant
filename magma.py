@@ -35,8 +35,8 @@ def date():
 def wishMe():
     """This function let's magma greets the user when started"""
     speak("Welcome back sir!")
-    time()
-    date()
+    # time()
+    # date()
     hour = dt.datetime.now().hour
     if hour >= 6 and hour <= 12:
         speak("Good morning")
@@ -79,3 +79,11 @@ if __name__ == "__main__":
     while True:
         query = takeCommand().lower()
         print(query)
+
+        if "time" in query:
+            time()
+        elif "date" in query:
+            date()
+        elif "offline" in query:
+            speak("Going off")
+            quit()
