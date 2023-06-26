@@ -2,11 +2,14 @@ import pyttsx3 #import pyttsx3 model
 import datetime as dt # Import date and time
 import speech_recognition as sr # Import speech recognition
 import wikipedia # import wikipedia
+import smtpd # Import library to send emails
+import webbrowser as wb # Import the webbrowser library to help the program access the web browser
+import os 
 
 engine = pyttsx3.init() #Created and initialised an object for the ai package
 
 voices = engine.getProperty('voices') #This code changes the voice
-engine.setProperty('voice', voices[1].id)
+engine.setProperty('voice', voices[0].id)
 newVoiceRate = 160
 engine.setProperty('rate', newVoiceRate)
 
@@ -71,6 +74,19 @@ def takeCommand():
     
     return query
 
+def  sendmail(to, content):
+    speak("Please enter your email: ")
+    email = input("Please enter your email: ")
+    speak("Please enter your password: ")
+    pword = input("Please type your password")
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.ehlo()
+    server.starttls()
+    server.login(email, pword )
+    server.sendmail(email, to, content)
+    server.close()
+
+
 #takeCommand()
 
 if __name__ == "__main__":
@@ -94,3 +110,25 @@ if __name__ == "__main__":
             result = wikipedia.summary(query, sentences = 3)
             print(result)
             speak(result)
+        elif "send email" in query:
+            try:
+                speak("what should i say?")
+                content = takeCommand()
+                speak("Please provide receipients email: ")
+                to = input("Please provide receipients email: ")
+                sendmail(to, content)
+                speak(content)
+            except Exception as e:
+                speak(e)
+                speak("Unable to send the message")
+        elif "chrome" in query:
+            speak("What should I search?")
+            chromepath = "C:\Program Files (x86)\Google\Chrome\Application\chrome.exe %s"
+            search = takeCommand().lower()
+            wb.get(chromepath).open_new_tab(search + ".com")
+        elif "logout" in query:
+            os.system("shutdown - l")
+        elif "shutdown" in query:
+            os.system("shutdown /s /t 1")
+        elif "restart" in query:
+            os.system("shutdown /r /t 1")
