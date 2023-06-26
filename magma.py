@@ -132,7 +132,14 @@ if __name__ == "__main__":
             os.system("shutdown /s /t 1")
         elif "restart" in query:
             os.system("shutdown /r /t 1")
-        elif "play songs" in query:
-            song_dir = "C:\Users\raymo\Music\iTunes\iTunes Media\Apple Music"
-            songs = os.listdir(song_dir)
-            os.startfile(os.path.join(song_dir, songs[0]))
+        # elif "play songs" in query:
+        #     song_dir = "C:\Users\raymo\Music\iTunes\iTunes Media\Apple Music"
+        #     songs = os.listdir(song_dir)
+        #     os.startfile(os.path.join(song_dir, songs[0]))
+        elif "remember" in query:
+            speak("What should i remember?")
+            data = takeCommand()
+            speak("You told me to remember that" + data)
+            remember = open("data.txt", "w")
+            remember.write(data)
+            remember.close()
