@@ -92,6 +92,12 @@ def screenshot():
     img = pyautogui.screenshot()
     img.save("C:\Users\raymo\ai_assistant\ss.png")
 
+def cpu():
+    usage = str(psutil.cpu_percent())
+    speak("CPU is at " + usage)
+    battery = psutil.sensors_battery
+    speak("battery is at" + battery.percent)
+
 
 #takeCommand()
 
@@ -155,4 +161,5 @@ if __name__ == "__main__":
         elif "screenshot" in query:
             screenshot()
             speak("Screenshot done!")
-        
+        elif "cpu" in query:
+            cpu()
