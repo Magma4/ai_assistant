@@ -4,7 +4,9 @@ import speech_recognition as sr # Import speech recognition
 import wikipedia # import wikipedia
 import smtpd # Import library to send emails
 import webbrowser as wb # Import the webbrowser library to help the program access the web browser
-import os 
+import os # Import the operating system library
+import pyautogui # import the pyautogui library
+import psutil # import the ps util library
 
 engine = pyttsx3.init() #Created and initialised an object for the ai package
 
@@ -86,6 +88,10 @@ def  sendmail(to, content):
     server.sendmail(email, to, content)
     server.close()
 
+def screenshot():
+    img = pyautogui.screenshot()
+    img.save("C:\Users\raymo\ai_assistant\ss.png")
+
 
 #takeCommand()
 
@@ -143,3 +149,10 @@ if __name__ == "__main__":
             remember = open("data.txt", "w")
             remember.write(data)
             remember.close()
+        elif "do you know anything" in query:
+            remember = open("data.txt", "r")
+            speak("You told me to remember that" + remember.read())
+        elif "screenshot" in query:
+            screenshot()
+            speak("Screenshot done!")
+        
