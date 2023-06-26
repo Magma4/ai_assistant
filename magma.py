@@ -7,6 +7,7 @@ import webbrowser as wb # Import the webbrowser library to help the program acce
 import os # Import the operating system library
 import pyautogui # import the pyautogui library
 import psutil # import the ps util library
+import pyjokes #import pyjokes
 
 engine = pyttsx3.init() #Created and initialised an object for the ai package
 
@@ -98,6 +99,9 @@ def cpu():
     battery = psutil.sensors_battery
     speak("battery is at" + battery.percent)
 
+def jokes():
+    speak(pyjokes.get_joke())
+
 
 #takeCommand()
 
@@ -163,3 +167,5 @@ if __name__ == "__main__":
             speak("Screenshot done!")
         elif "cpu" in query:
             cpu()
+        elif "joke" in query:
+            jokes()
