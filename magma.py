@@ -53,7 +53,7 @@ def wishMe():
         speak("Good evening")
     else:
         speak("Good night")
-    speak("Magma at your service, how can i help you today?")
+    speak("How can i help you today?")
 
 # wishMe()
 
@@ -89,9 +89,9 @@ def  sendmail(to, content):
     server.sendmail(email, to, content)
     server.close()
 
-def screenshot():
-    img = pyautogui.screenshot()
-    img.save("C:\Users\raymo\ai_assistant\ss.png")
+# def screenshot():
+#     img = pyautogui.screenshot()
+#     img.save("C:\Users\raymo\ai_assistant\ss.jpg")
 
 def cpu():
     usage = str(psutil.cpu_percent())
